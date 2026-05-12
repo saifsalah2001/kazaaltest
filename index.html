@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>خزعل العاوي - موبايل</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff4d00;
+            --accent: #ffcc00;
+            --dark: #0a0a0a;
+            --glass: rgba(20, 20, 20, 0.9);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; -webkit-tap-highlight-color: transparent; }
+
+        body { background-color: var(--dark); color: #fff; overflow-x: hidden; }
+
+        /* القائمة العلوية للجوال */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 15px 20px;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .logo { font-size: 1.3rem; font-weight: 900; }
+        .logo span { color: var(--primary); }
+
+        .menu-icon { font-size: 1.5rem; cursor: pointer; color: var(--primary); }
+
+        /* القائمة الجانبية */
+        .side-menu {
+            position: fixed;
+            top: 0; right: -100%;
+            width: 80%; height: 100%;
+            background: #111;
+            z-index: 2000;
+            transition: 0.4s;
+            padding: 50px 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+        }
+
+        .side-menu.active { right: 0; }
+
+        .side-menu a { color: #fff; text-decoration: none; font-size: 1.5rem; font-weight: 700; }
+
+        .close-menu { align-self: flex-end; font-size: 2rem; color: var(--primary); }
+
+        /* الهيرو - نسخة الجوال */
+        .hero {
+            height: 85vh;
+            background: linear-gradient(rgba(0,0,0,0.4), var(--dark)), 
+                        url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .hero h1 { font-size: 2.8rem; line-height: 1.2; margin-bottom: 15px; }
+        .hero h1 span { color: var(--accent); }
+        .hero p { font-size: 1rem; color: #bbb; margin-bottom: 25px; }
+
+        /* المنيو - ترتيب عمودي */
+        .section-title { padding: 40px 20px 20px; font-size: 1.8rem; text-align: center; }
+
+        .food-card {
+            background: #1a1a1a;
+            margin: 15px 20px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .food-img { height: 200px; background-size: cover; background-position: center; }
+        .food-info { padding: 20px; }
+        .price { color: var(--primary); font-weight: 900; font-size: 1.2rem; }
+
+        /* الأزرار الثابتة أسفل الشاشة */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0; width: 100%;
+            background: var(--glass);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: 10px;
+            gap: 10px;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .btn-action {
+            padding: 12px;
+            border-radius: 12px;
+            border: none;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        .btn-call { background: #222; color: #fff; }
+        .btn-order { background: var(--primary); color: #fff; }
+
+        /* الفورم للجوال */
+        .booking-form { padding: 20px; background: #151515; margin: 20px; border-radius: 20px; }
+        input { width: 100%; padding: 15px; margin-bottom: 10px; border-radius: 10px; border: none; background: #222; color: #fff; }
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">خزعل <span>العاوي</span></div>
+        <i class="fas fa-bars menu-icon" onclick="toggleMenu()"></i>
+    </nav>
+
+    <div class="side-menu" id="sideMenu">
+        <i class="fas fa-times close-menu" onclick="toggleMenu()"></i>
+        <a href="#home" onclick="toggleMenu()">الرئيسية</a>
+        <a href="#menu" onclick="toggleMenu()">المنيو</a>
+        <a href="#about" onclick="toggleMenu()">من نحن</a>
+        <a href="#booking" onclick="toggleMenu()">حجز طاولة</a>
+    </div>
+
+    <header class="hero">
+        <h1 data-aos="zoom-in">أطيب <br><span>مشويات</span> <br> في بغداد</h1>
+        <p data-aos="fade-up" data-aos-delay="200">لحم عراقي طازج يُشوى على الفحم أمام عينيك.</p>
+    </header>
+
+    <h2 class="section-title" id="menu">المنيو السريع</h2>
+    
+    <div class="food-card" data-aos="fade-left">
+        <div class="food-img" style="background-image: url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=400');"></div>
+        <div class="food-info">
+            <div class="price">15,000 د.ع</div>
+            <h3>كباب خزعل المخصوص</h3>
+            <p>6 أشياش مع الخبز الحار والمقبلات.</p>
+        </div>
+    </div>
+
+    <div class="food-card" data-aos="fade-right">
+        <div class="food-img" style="background-image: url('https://images.unsplash.com/photo-1529692236671-f1f6e9460272?auto=format&fit=crop&w=400');"></div>
+        <div class="food-info">
+            <div class="price">18,000 د.ع</div>
+            <h3>ماعون ريش غنم</h3>
+            <p>ريش طرية متبلة بخلطة العاوي السرية.</p>
+        </div>
+    </div>
+
+    <div id="booking" class="booking-form">
+        <h2 style="margin-bottom: 15px;">حجز طاولة</h2>
+        <input type="text" placeholder="الاسم">
+        <input type="number" placeholder="عدد الأفراد">
+        <input type="time">
+        <button class="btn-action btn-order" style="width: 100%;">تأكيد الطلب</button>
+    </div>
+
+    <div style="height: 100px;"></div>
+
+    <div class="bottom-nav">
+        <button class="btn-action btn-call" onclick="window.open('tel:00000000')"><i class="fas fa-phone"></i> اتصال</button>
+        <button class="btn-action btn-order" onclick="alert('سيتم فتح الواتساب...')"><i class="fab fa-whatsapp"></i> اطلب واتساب</button>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+
+        function toggleMenu() {
+            document.getElementById('sideMenu').classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
